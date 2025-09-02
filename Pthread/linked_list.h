@@ -12,7 +12,7 @@ int Member(int value, list_node *head_p);
 int Insert(int value, list_node **head_pp);
 int Delete(int value, list_node **head_pp);
 
-void Destructor(list_node **head_pp);
+void Destructor(list_node *head_pp);
 void PrintList(list_node *head_p);
 
 #endif

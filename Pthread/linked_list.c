@@ -1,5 +1,6 @@
 #include "linked_list.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 // expects sorted linked list, returns 1 if value is found, 0 otherwise
 int Member(int value, list_node* head_p){
@@ -25,7 +26,7 @@ int Insert(int value, list_node** head_pp){
         curr_p = curr_p->next;
     }
     //insert or skip(if exists)
-    if (curr_p = NULL || curr_p->data > value){
+    if (curr_p == NULL || curr_p->data > value){
         temp_p = malloc(sizeof(list_node));
         temp_p->data = value;
         temp_p->next = curr_p;
@@ -79,7 +80,7 @@ void Destructor(list_node* head_p){
     }
 }
 
-void Print(list_node * head_p){
+void PrintList(list_node * head_p){
     list_node * curr_p = head_p;
     while(curr_p!=NULL){
         printf("Node : %d \n",curr_p->data);
