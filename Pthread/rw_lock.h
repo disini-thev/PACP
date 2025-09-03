@@ -2,10 +2,12 @@
 #define RWLOCK_H
 
 #include <pthread.h>
+#include "linked_list.h"
 
-void * threadFuncRW(void * args);
+void *threadFuncRW(void *args);
 
-typedef struct rw_lock_data{
+typedef struct rw_lock_data
+{
     pthread_rwlock_t rwlock;
     pthread_mutex_t count_mutex;
     list_node *head;
@@ -22,8 +24,8 @@ typedef struct rw_lock_data{
 
 } rw_lock_data;
 
-unsigned long readwriteExecution(int total_ops, 
-    int member_frac, int insert_frac, int delete_frac, 
-    int thread_count);
+unsigned long readwriteExecution(int total_ops,
+                                 int member_frac, int insert_frac, int delete_frac,
+                                 int thread_count);
 
 #endif
