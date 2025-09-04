@@ -68,7 +68,7 @@ unsigned long mutexExecution(int total_operations, int mMember, int mInsert, int
     pthread_mutex_destroy(&thread_data.mutex);
 
     Destructor(thread_data.head);
-    printf("Mutex run complete\n");
+    // printf("Mutex run complete\n");
     return exec_time;
 }
 

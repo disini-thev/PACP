@@ -3,6 +3,7 @@
 #include "global.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <sys/time.h>
 #include <pthread.h>
 
@@ -65,7 +66,7 @@ unsigned long readwriteExecution(int total_ops,
     unsigned long time = (end.tv_sec - start.tv_sec) * 1000000 + end.tv_usec - start.tv_usec; // tv_sec = seconds since epoch, //tv_usec = microseconds within that second
 
     Destructor(thread_data.head);
-
+    // printf("RW run complete\n");
     return time;
 }
 
@@ -109,9 +110,13 @@ void *threadFuncRW(void *args)
                 // critical section
                 pthread_rwlock_rdlock(&thread_data->rwlock); // read only lock for checking member
                 Member(rand_value, thread_data->head);
+                pthread_rwlock_unlock(&thread_data->rwlock);
+
+                /* Critical section (read lock is not suitable for writing) */
+                pthread_mutex_lock(&thread_data->count_mutex);
                 thread_data->member_op_count++;
                 thread_data->total_op_count++;
-                pthread_rwlock_unlock(&thread_data->rwlock);
+                pthread_mutex_unlock(&thread_data->count_mutex);
             }
         }
     }

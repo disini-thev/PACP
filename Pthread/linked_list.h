@@ -1,5 +1,5 @@
-#ifndef SERIAL_H
-#define SERIAL_H
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
 
 typedef struct list_node {
     int data;
