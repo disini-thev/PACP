@@ -31,7 +31,7 @@ public class BusStop {
     // bus arrival
     public void busArrives(int busId) throws InterruptedException {
 
-        System.out.println("Bus " + busId + " arrived at stop.");
+        System.out.println("\nBus " + busId + " arrived at stop.");
         mutex.acquire();
 
         int n = Math.min(waiting, capacity);
@@ -45,6 +45,6 @@ public class BusStop {
         waiting = Math.max(waiting - capacity, 0);
         mutex.release();
 
-        System.out.println("Bus " + busId + " is departing");
+        System.out.println("Bus " + busId + " is departing\n");
     }
 }
