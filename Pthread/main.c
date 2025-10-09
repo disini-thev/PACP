@@ -112,9 +112,7 @@ int main()
             double samples = ceil(pow(x, 2));
 
             // Print the results
-            // printf("%s: Runs=%d, Mean=%.2f, StdDev=%.2f\n", labels[k], samples, mean, std_dev);
             printf("%s:\n", labels[k]);
-            printf("Samples: %d\n", (int)samples);
             printf("Mean (Average): %f\n", mean);
             printf("Standard Deviation: %f\n", std_dev);
         }
