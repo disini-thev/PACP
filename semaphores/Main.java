@@ -7,7 +7,7 @@ public class Main {
 
         //demonstration mean times
         double meanRider = 0.5;  // 0.5 min → scaled down to 0.5 s
-        double meanBus = 5;      // 20 min → scaled down to 5 s  //when scaled down to 2 s, buses arrive too quickly and riders don't accumulate
+        double meanBus = 5;      // 20 min → scaled down to 5 s  
 
         // Rider generation
         Thread riderGenerator = new Thread(() -> {
