@@ -15,11 +15,11 @@ public class BusStop {
         System.out.println("Rider " + riderId + " is trying to enter the bus stop.");
         mutex.acquire();
         waiting++;
-        System.out.println("Rider " + riderId + " arrived. Waiting = " + waiting);
+        System.out.println("Rider " + riderId + " entered the bus stop. Waiting = " + waiting);
         mutex.release();
 
         // wait for bus
-        System.out.println("Rider " + riderId + " is waiting for a bus.");
+        // System.out.println("Rider " + riderId + " is waiting for a bus.");
         bus.acquire();
         // boarding simulation
         System.out.println("Rider " + riderId + " is boarding...");
@@ -31,20 +31,22 @@ public class BusStop {
     // bus arrival
     public void busArrives(int busId) throws InterruptedException {
 
-        System.out.println("\nBus " + busId + " arrived at stop.");
+        System.out.println("Bus " + busId + " is trying to enter the bus stop.");
         mutex.acquire();
 
         int n = Math.min(waiting, capacity);
-        System.out.println("Bus " + busId + " is boarding " + n + " riders (waiting = " + waiting + ")");
+        System.out.println("\nBus " + busId + " starts boarding " + n + " riders (waiting = " + waiting + ")");
 
         for (int i = 0; i < n; i++) {
             bus.release();       // allow one rider to board
             boarded.acquire();   // wait until rider boards
         }
 
+        System.out.println("Bus " + busId + " finished boarding.\n");
+
         waiting = Math.max(waiting - capacity, 0);
         mutex.release();
 
-        System.out.println("Bus " + busId + " is departing\n");
+        System.out.println("Bus " + busId + " is departing");
     }
 }
